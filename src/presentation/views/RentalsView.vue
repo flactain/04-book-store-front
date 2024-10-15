@@ -1,5 +1,5 @@
 <script setup>
-import HomeLogoutItem from '@/components/HomeLogoutItem.vue'
+import HomeLogoutItem from '@/presentation/components/HomeLogoutItem.vue'
 import { ref } from 'vue'
 //TODO:APIたたく実装必要
 const books = ref([

@@ -1,14 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import TopView from '../views/TopView.vue'
-import NotFound from '@/views/NotFound.vue'
+import TopView from '@/presentation/views/TopView.vue'
+import NotFound from '@/presentation/views/NotFound.vue'
 
 import { useAuthStore } from '@/store/auth'
-import LoginView from '@/views/LoginView.vue'
-import HomeView from '@/views/HomeView.vue'
-import RentReturnView from '@/views/RentReturnView.vue'
-import RentalsView from '@/views/RentalsView.vue'
-import ResultView from '@/views/ResultView.vue'
-import BookListView from '@/views/BookListView.vue'
+import LoginView from '@/presentation/views/LoginView.vue'
+import HomeView from '@/presentation/views/HomeView.vue'
+import RentReturnView from '@/presentation/views/RentReturnView.vue'
+import RentalsView from '@/presentation/views/RentalsView.vue'
+import ResultView from '@/presentation/views/ResultView.vue'
+import BookListView from '@/presentation/views/BookListView.vue'
 
 const router = createRouter({
   history: createWebHistory(),

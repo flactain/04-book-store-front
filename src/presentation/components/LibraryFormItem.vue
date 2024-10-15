@@ -30,12 +30,12 @@ const isbn = ref('')
 <template>
   <template v-if="isRental">
     <h3>Rental</h3>
-    <input v-model="isbn" type="text" @keyup.enter="fetchBookDetail" />
+    <v-text-field v-model="isbn" type="text" @keyup.enter="fetchBookDetail" />
     <v-btn @click="submit">rent</v-btn>
   </template>
   <template v-if="isReturn">
     <h3>Return</h3>
-    <input v-model="isbn" type="text" @keyup.enter="fetchRentalDetail" />
+    <v-text-field v-model="isbn" type="text" @keyup.enter="fetchRentalDetail" />
     <v-btn @click="submit">return</v-btn>
   </template>
 </template>

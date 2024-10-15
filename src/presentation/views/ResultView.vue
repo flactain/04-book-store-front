@@ -1,6 +1,6 @@
 <script setup>
-import LibraryFormItem from '@/components/LibraryFormItem.vue'
-import HomeLogoutItem from '@/components/HomeLogoutItem.vue'
+import LibraryFormItem from '@/presentation/components/LibraryFormItem.vue'
+import HomeLogoutItem from '@/presentation/components/HomeLogoutItem.vue'
 import { useAuthStore } from '@/store/auth'
 // eslint-disable-next-line no-unused-vars
 import { onMounted, onUnmounted } from 'vue'

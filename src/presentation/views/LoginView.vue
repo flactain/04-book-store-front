@@ -34,7 +34,7 @@ onMounted(() => {
   <h2>Login</h2>
   <v-btn @click="toTop">TOP</v-btn>
   <div>
-    <input v-model="authStore.userId" type="text" />
+    <v-text-field v-model="authStore.userId" type="text" />
   </div>
   <div>
     <v-btn @click="Login">Login</v-btn>

@@ -1,20 +1,31 @@
 <script setup>
-import HomeLogoutItem from '@/components/HomeLogoutItem.vue'
+import HomeLogoutItem from '@/presentation/components/HomeLogoutItem.vue'
 import axios from 'axios'
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 
-//axios.defaults.baseURL = 'https://www.googleapis.com/books/v1/'
+// axios.defaults.baseURL = 'https://u6q1vqf2mj.execute-api.ap-northeast-1.amazonaws.com/prd/'
 const router = useRouter()
 
 const isbn = ref('')
 const qty = ref(0)
+const allBooks = ref([])
 const bookDetail = ref({
   title: '',
   publishesr: ''
 })
-const allBooks = ref([])
+//form validation
+const titleValid = computed(() => {
+  console.log('computed kick')
+  return bookDetail.value.title == 'こちらの書籍は登録ありません' || !!bookDetail.value.title
+})
+const qtyValid = computed(() => {
+  return qty.value > 0
+})
 
+/**
+ * API Kick
+ */
 async function getBookDetail() {
   await axios
     .get(
@@ -42,12 +53,28 @@ async function getBookDetail() {
 }
 
 //TODO: post apiを叩く。 redirectで現在のページへ
+//TODO: error handling
 function register() {
-  // books.value.push({
-  //   isbn: isbn.value,
-  //   bookName: bookDetail.value.title,
-  //   qty: qty.value
-  // })
+  axios
+    .post(
+      '/lib/books',
+      {
+        qty: qty,
+        book_name: bookDetail.value.title,
+        isbn: isbn
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        }
+      }
+    )
+    .then((response) => {
+      console.log(response)
+      getBookDetail()
+    })
+    .catch((error) => console.log(error))
 }
 
 async function getAllBooks() {
@@ -74,20 +101,29 @@ onMounted(() => {
 
 <template>
   <HomeLogoutItem />
-  <h3>Register</h3>
-  <span>isbn</span>
-  <input v-model="isbn" type="text" @change="getBookDetail" />
-  <span>qty</span>
-  <input v-model="qty" type="text" />
-  <v-btn @click="register">register</v-btn>
-  <p>title:{{ bookDetail.title }}</p>
-  <p>publisher: {{ bookDetail.publisher }}</p>
 
-  <h3>All books</h3>
-  <div v-for="book in allBooks" :key="book.isbn">
-    <p>isbn:{{ book.isbn }}</p>
-    <p>bookName:{{ book.book_name }}</p>
-    <p>qty:{{ book.qty }}</p>
-    <br />
-  </div>
+  <v-container>
+    <h3>Register</h3>
+    <v-row>
+      <v-col col="5">
+        <v-text-field v-model="isbn" type="text" label="ISBN" @change="getBookDetail" />
+        <p>title:{{ bookDetail.title }}</p>
+        <p>publisher: {{ bookDetail.publisher }}</p>
+      </v-col>
+      <v-col col="2">
+        <v-text-field v-model="qty" label="Quantity" />
+      </v-col>
+    </v-row>
+    <v-btn :disabled="!titleValid || !qtyValid" @click="register">register</v-btn>
+  </v-container>
+
+  <v-container>
+    <h3>All books</h3>
+    <div v-for="book in allBooks" :key="book.isbn">
+      <p>isbn:{{ book.isbn }}</p>
+      <p>bookName:{{ book.book_name }}</p>
+      <p>qty:{{ book.qty }}</p>
+      <br />
+    </div>
+  </v-container>
 </template>
