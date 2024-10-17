@@ -81,7 +81,9 @@ const uploadImage = async () => {
 
     if (uploadResponse.status === 200) {
       if (true) {
-        //TODO: 条件, authの追加
+        //TODO: bodyにあるIDをauthに追加
+        console.log(uploadResponse)
+
         toHome()
       }
     } else {
@@ -108,7 +110,7 @@ onBeforeUnmount(() => {
 
 <template>
   <h2>Login</h2>
-  <v-btn @click="toTop">TOP</v-btn>
+  <v-btn @click="toTop">TOP</v-btn><br />
   <!-- <div>
     <v-text-field v-model="authStore.userId" type="text" />
     <p>{{ authStore.userId }}</p>
