@@ -23,14 +23,11 @@ function toTop() {
   authStore.userId = ''
   router.push({ name: 'top' })
 }
-function toHome() {
-  router.push({ name: 'home' })
-}
 
 /**
  * functions
  */
-function login() {
+function register() {
   uploadImage('')
   return console.log('register')
 }
@@ -80,13 +77,13 @@ const uploadImage = async () => {
     })
 
     if (uploadResponse.status === 200) {
-      toHome()
+      uploadStatus.value = 'アップロード成功！'
     } else {
-      console.error(uploadResponse)
+      throw new Error('アップロードに失敗しました。')
     }
   } catch (error) {
-    console.error('api送信時にエラー:', error)
-    uploadStatus.value = 'アップロード失敗: ' + error
+    console.error('アップロードエラー:', error)
+    uploadStatus.value = 'アップロード失敗: ' + (error.response?.data?.message || error.message)
   }
 }
 
@@ -104,7 +101,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <h2>Login</h2>
+  <h2>User Register</h2>
   <v-btn @click="toTop">TOP</v-btn>
   <div>
     <v-text-field v-model="authStore.userId" type="text" />
@@ -118,7 +115,7 @@ onBeforeUnmount(() => {
   </div>
 
   <div>
-    <v-btn @click="login">Login</v-btn>
+    <v-btn @click="register">Register</v-btn>
   </div>
   <p>{{ uploadStatus }}</p>
 </template>

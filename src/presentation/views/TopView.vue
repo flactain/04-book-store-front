@@ -9,6 +9,9 @@ const router = useRouter()
 function toLogin() {
   router.push({ name: 'login' })
 }
+function toRegister() {
+  router.push({ name: 'userRegister' })
+}
 
 onMounted(() => {
   console.log('TopOnMounted')

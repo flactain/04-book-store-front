@@ -9,6 +9,7 @@ import RentReturnView from '@/presentation/views/RentReturnView.vue'
 import RentalsView from '@/presentation/views/RentalsView.vue'
 import ResultView from '@/presentation/views/ResultView.vue'
 import BookListView from '@/presentation/views/BookListView.vue'
+import UserRegister from '@/presentation/views/UserRegister.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -24,6 +25,12 @@ const router = createRouter({
       component: LoginView,
       meta: { requiredAuth: false },
       name: 'login'
+    },
+    {
+      path: '/user/register',
+      component: UserRegister,
+      meta: { requiredAuth: false },
+      name: 'userRegister'
     },
     {
       path: '/home',
