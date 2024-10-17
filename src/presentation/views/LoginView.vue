@@ -80,7 +80,10 @@ const uploadImage = async () => {
     })
 
     if (uploadResponse.status === 200) {
-      toHome()
+      if (true) {
+        //TODO: 条件, authの追加
+        toHome()
+      }
     } else {
       console.error(uploadResponse)
     }
@@ -106,10 +109,10 @@ onBeforeUnmount(() => {
 <template>
   <h2>Login</h2>
   <v-btn @click="toTop">TOP</v-btn>
-  <div>
+  <!-- <div>
     <v-text-field v-model="authStore.userId" type="text" />
     <p>{{ authStore.userId }}</p>
-  </div>
+  </div> -->
   <video v-show="!isCapturedImage" ref="videoRef" :width="width" :height="height" autoplay></video>
   <canvas v-show="isCapturedImage" ref="canvasRef" :width="width" :height="height"></canvas>
   <div>
