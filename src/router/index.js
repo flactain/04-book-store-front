@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import TopView from '@/presentation/views/TopView.vue'
 import NotFound from '@/presentation/views/NotFound.vue'
 
-import { useAuthStore } from '@/store/auth'
+import { useAuthStore } from '@/repository/store/auth'
 import LoginView from '@/presentation/views/LoginView.vue'
 import HomeView from '@/presentation/views/HomeView.vue'
 import RentReturnView from '@/presentation/views/RentReturnView.vue'
@@ -72,15 +72,15 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach((to) => {
-  console.log('router.beforeEach')
+router.beforeEach((to, from) => {
+  console.log('--router.beforeEach--')
+  console.log('-to')
+  console.log(to)
+  console.log('-from')
+  console.log(from)
+  console.log('--router.beforeEach--')
 
   const auth = useAuthStore()
-  console.log('auth.userIdがない; ' + !auth.isLogin.value)
-  console.log('to.meta:' + to.meta.requiredAuth)
-  console.log('to.info:' + to)
-  console.log(to)
-  console.log(to.meta.requiredAuth && !auth.isLogin.value)
 
   if (to.meta.requiredAuth && !auth.isLogin.value) {
     console.log('out aUTH IN')

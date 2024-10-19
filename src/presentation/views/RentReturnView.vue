@@ -1,7 +1,7 @@
 <script setup>
 import LibraryFormItem from '@/presentation/components/LibraryFormItem.vue'
 import HomeLogoutItem from '@/presentation/components/HomeLogoutItem.vue'
-import { useAuthStore } from '@/store/auth'
+import { useAuthStore } from '@/repository/store/auth'
 // eslint-disable-next-line no-unused-vars
 import { onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'

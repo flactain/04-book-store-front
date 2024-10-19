@@ -1,5 +1,5 @@
 <script setup>
-import { useAuthStore } from '@/store/auth'
+import { useAuthStore } from '@/repository/store/auth'
 // eslint-disable-next-line no-unused-vars
 import { onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'

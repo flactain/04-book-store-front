@@ -1,5 +1,5 @@
 <script setup>
-import { useAuthStore } from '@/store/auth'
+import { useAuthStore } from '@/repository/store/auth'
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 

@@ -1,5 +1,5 @@
 <script setup>
-import { useAuthStore } from '@/store/auth'
+import { useAuthStore } from '@/repository/store/auth'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
@@ -30,9 +30,10 @@ function toHome() {
 /**
  * functions
  */
-function login() {
-  uploadImage('')
-  return console.log('register')
+async function login() {
+  console.log('try login')
+  authStore.userId = await uploadImage('')
+  toHome()
 }
 
 const startCamera = async () => {
@@ -83,15 +84,16 @@ const uploadImage = async () => {
       if (true) {
         //TODO: bodyにあるIDをauthに追加
         console.log(uploadResponse)
-
-        toHome()
+        return 'test'
       }
     } else {
       console.error(uploadResponse)
+      return 'test'
     }
   } catch (error) {
     console.error('api送信時にエラー:', error)
     uploadStatus.value = 'アップロード失敗: ' + error
+    return 'test'
   }
 }
 
