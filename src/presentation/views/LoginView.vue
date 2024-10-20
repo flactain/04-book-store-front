@@ -3,6 +3,7 @@ import { useAuthStore } from '@/repository/store/auth'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
+import HeaderText from '../components/HeaderText.vue'
 
 const authStore = useAuthStore()
 const router = useRouter()
@@ -111,21 +112,29 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <h2>Login</h2>
-  <v-btn @click="toTop">TOP</v-btn><br />
-  <!-- <div>
-    <v-text-field v-model="authStore.userId" type="text" />
-    <p>{{ authStore.userId }}</p>
-  </div> -->
-  <video v-show="!isCapturedImage" ref="videoRef" :width="width" :height="height" autoplay></video>
-  <canvas v-show="isCapturedImage" ref="canvasRef" :width="width" :height="height"></canvas>
-  <div>
-    <v-btn @click="isCapturedImage = false">reset</v-btn>
-    <v-btn @click="captureImage">capture</v-btn>
-  </div>
+  <v-container>
+    <HeaderText>Login</HeaderText>
+    <v-btn @click="toTop">TOP</v-btn><br />
+    <!-- <div>
+      <v-text-field v-model="authStore.userId" type="text" />
+      <p>{{ authStore.userId }}</p>
+    </div> -->
+    <video
+      v-show="!isCapturedImage"
+      ref="videoRef"
+      :width="width"
+      :height="height"
+      autoplay
+    ></video>
+    <canvas v-show="isCapturedImage" ref="canvasRef" :width="width" :height="height"></canvas>
+    <div>
+      <v-btn @click="isCapturedImage = false">reset</v-btn>
+      <v-btn @click="captureImage">capture</v-btn>
+    </div>
 
-  <div>
-    <v-btn @click="login">Login</v-btn>
-  </div>
-  <p>{{ uploadStatus }}</p>
+    <div>
+      <v-btn @click="login">Login</v-btn>
+    </div>
+    <p>{{ uploadStatus }}</p>
+  </v-container>
 </template>

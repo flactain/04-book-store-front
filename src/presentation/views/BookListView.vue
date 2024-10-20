@@ -4,6 +4,7 @@ import axios from 'axios'
 import { ref, computed, onMounted } from 'vue'
 import { createBook } from '@/models/model/book'
 import { useBookService } from '@/models/service/bookService'
+import HeaderText from '../components/HeaderText.vue'
 
 var inputBook = createBook()
 const bookService = useBookService()
@@ -61,10 +62,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <LoginedHeader />
-
   <v-container>
-    <h3>Register</h3>
+    <HeaderText>Register Book</HeaderText>
+    <LoginedHeader />
     <v-row>
       <v-col col="5">
         <v-text-field v-model="inputBook.isbn" type="text" label="ISBN" @change="getBookDetail" />

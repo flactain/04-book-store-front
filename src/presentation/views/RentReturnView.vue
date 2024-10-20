@@ -5,6 +5,7 @@ import { useAuthStore } from '@/repository/store/auth'
 // eslint-disable-next-line no-unused-vars
 import { onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import HeaderText from '../components/HeaderText.vue'
 
 const authStore = useAuthStore()
 const router = useRouter()
@@ -32,6 +33,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <HeaderText>Rental/Return</HeaderText>
   <LoginedHeader />
   <LibraryFormItem @submit="submit"></LibraryFormItem>
 </template>
