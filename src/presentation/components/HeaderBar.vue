@@ -4,6 +4,7 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     </template>
     <v-app-bar-title>Book-store system</v-app-bar-title>
+    <v-spacer></v-spacer>
   </v-app-bar>
 
   <!-- nav barの項目こちら -->

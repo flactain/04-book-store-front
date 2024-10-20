@@ -53,6 +53,7 @@ const captureImage = () => {
   }
 }
 
+//infrastructureに移動
 const uploadImage = async () => {
   if (!capturedImage.value) {
     console.error('アップロードする画像がありません。')
@@ -94,6 +95,7 @@ const uploadImage = async () => {
 onMounted(() => {
   startCamera()
 })
+
 onBeforeUnmount(() => {
   if (stream.value) {
     stream.value.getTracks().forEach((track) => track.stop())
@@ -104,7 +106,6 @@ onBeforeUnmount(() => {
 <template>
   <v-container>
     <HeaderText>Register User</HeaderText>
-    <v-btn @click="toTop">TOP</v-btn>
     <div>
       <v-text-field v-model="authStore.userId" type="text" />
       <p>{{ authStore.userId }}</p>

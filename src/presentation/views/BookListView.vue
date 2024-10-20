@@ -1,6 +1,6 @@
 <script setup>
 import axios from 'axios'
-import { ref, computed, onMounted } from 'vue'
+import { reactive, ref, computed, onMounted } from 'vue'
 import { createBook } from '@/models/model/book'
 import { useBookService } from '@/models/service/bookService'
 import HeaderText from '../components/HeaderText.vue'
@@ -49,7 +49,7 @@ function register() {
     .catch((error) => console.log(error))
 }
 async function getAllBooks() {
-  allBooks.value = await bookService.getAllBooks
+  allBooks.value = await bookService.getAllBooks()
 }
 
 /**
@@ -77,12 +77,26 @@ onMounted(() => {
   </v-container>
 
   <v-container>
-    <h3>All books</h3>
-    <div v-for="book in allBooks" :key="book.isbn">
-      <p>isbn:{{ book.isbn }}</p>
-      <p>bookName:{{ book.book_name }}</p>
-      <p>qty:{{ book.qty }}</p>
-      <br />
-    </div>
+    <v-expansion-panels>
+      <h3>All books</h3>
+      <!-- <v-data-table :items="allBooks"></v-data-table> -->
+      <v-expansion-panel>
+        <v-expansion-panel-title>
+          <template #default="{ expanded }">
+            <v-row no-gutters>
+              <v-col class="d-flex justify-start" cols="4"> All Books </v-col>
+              <v-col class="text-grey" cols="8">
+                <v-fade-transition leave-absolute>
+                  <span v-if="expanded" key="0"> you cannot update these data yet</span>
+                </v-fade-transition>
+              </v-col>
+            </v-row>
+          </template>
+        </v-expansion-panel-title>
+        <v-expansion-panel-text>
+          <v-data-table :items="allBooks"></v-data-table>
+        </v-expansion-panel-text>
+      </v-expansion-panel>
+    </v-expansion-panels>
   </v-container>
 </template>

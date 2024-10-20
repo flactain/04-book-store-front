@@ -24,12 +24,16 @@ export function useBookService() {
   }
 
   async function getAllBooks() {
+    var allBooks = []
     await bookStoreApi
       .fetchAllBooks()
       .then((response) => {
-        return response.data
+        allBooks = response.data
       })
-      .catch((error) => console.error(error))
+      .catch((error) => {
+        console.error(error)
+      })
+    return allBooks
   }
   return {
     getBookDetailByIsbn,

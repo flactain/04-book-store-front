@@ -83,12 +83,9 @@ router.beforeEach((to, from) => {
   const auth = useAuthStore()
 
   if (to.meta.requiredAuth && !auth.isLogin.value) {
-    console.log('out aUTH IN')
     return {
       path: '/'
     }
-  } else {
-    console.log('else in')
   }
 })
 

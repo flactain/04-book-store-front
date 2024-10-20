@@ -20,10 +20,6 @@ const height = 480
 /**
  * Routing
  */
-function toTop() {
-  authStore.userId = ''
-  router.push({ name: 'top' })
-}
 function toHome() {
   router.push({ name: 'home' })
 }
@@ -114,19 +110,18 @@ onBeforeUnmount(() => {
 <template>
   <v-container>
     <HeaderText>Login</HeaderText>
-    <v-btn @click="toTop">TOP</v-btn><br />
-    <!-- <div>
-      <v-text-field v-model="authStore.userId" type="text" />
-      <p>{{ authStore.userId }}</p>
-    </div> -->
-    <video
-      v-show="!isCapturedImage"
-      ref="videoRef"
-      :width="width"
-      :height="height"
-      autoplay
-    ></video>
-    <canvas v-show="isCapturedImage" ref="canvasRef" :width="width" :height="height"></canvas>
+    <v-row>
+      <v-col cols="12" style="text-align: center">
+        <video
+          v-show="!isCapturedImage"
+          ref="videoRef"
+          :width="width"
+          :height="height"
+          autoplay
+        ></video>
+        <canvas v-show="isCapturedImage" ref="canvasRef" :width="width" :height="height"></canvas>
+      </v-col>
+    </v-row>
     <div>
       <v-btn @click="isCapturedImage = false">reset</v-btn>
       <v-btn @click="captureImage">capture</v-btn>
