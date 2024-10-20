@@ -1,5 +1,5 @@
 <script setup>
-import HomeLogoutItem from '@/presentation/components/HomeLogoutItem.vue'
+import LoginedHeader from '@/presentation/components/LoginedHeader.vue'
 import { ref } from 'vue'
 //TODO:APIたたく実装必要
 const books = ref([
@@ -28,7 +28,7 @@ const books = ref([
 </script>
 
 <template>
-  <HomeLogoutItem />
+  <LoginedHeader />
   <h3>rentals</h3>
   <div v-for="book in books" :key="book.rentNo">
     <p>rentNo:{{ book.rentNo }}</p>

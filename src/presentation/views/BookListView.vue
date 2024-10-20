@@ -1,5 +1,5 @@
 <script setup>
-import HomeLogoutItem from '@/presentation/components/HomeLogoutItem.vue'
+import LoginedHeader from '@/presentation/components/LoginedHeader.vue'
 import axios from 'axios'
 import { ref, computed, onMounted } from 'vue'
 import { createBook } from '@/models/model/book'
@@ -7,6 +7,7 @@ import { useBookService } from '@/models/service/bookService'
 
 var inputBook = createBook()
 const bookService = useBookService()
+
 var allBooks = ref([])
 
 //form validation
@@ -60,7 +61,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <HomeLogoutItem />
+  <LoginedHeader />
 
   <v-container>
     <h3>Register</h3>

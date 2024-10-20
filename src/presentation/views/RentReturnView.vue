@@ -1,6 +1,6 @@
 <script setup>
 import LibraryFormItem from '@/presentation/components/LibraryFormItem.vue'
-import HomeLogoutItem from '@/presentation/components/HomeLogoutItem.vue'
+import LoginedHeader from '@/presentation/components/LoginedHeader.vue'
 import { useAuthStore } from '@/repository/store/auth'
 // eslint-disable-next-line no-unused-vars
 import { onMounted, onUnmounted } from 'vue'
@@ -32,6 +32,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <HomeLogoutItem />
+  <LoginedHeader />
   <LibraryFormItem @submit="submit"></LibraryFormItem>
 </template>

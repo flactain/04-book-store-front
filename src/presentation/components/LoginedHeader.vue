@@ -18,6 +18,8 @@ function toHome() {
 
 <template>
   <h4>your account is {{ authStore.userId }}</h4>
-  <v-btn @click="toHome">Top</v-btn>
-  <v-btn @click="toTop">Logout</v-btn>
+  <v-btn class="button" @click="toHome">Top</v-btn>
+  <v-btn class="button" @click="toTop">Logout</v-btn>
 </template>
+
+<style scoped></style>

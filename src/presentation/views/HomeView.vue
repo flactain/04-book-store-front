@@ -1,9 +1,9 @@
 <script setup>
 import { useAuthStore } from '@/repository/store/auth'
-// eslint-disable-next-line no-unused-vars
-import { onMounted, onUnmounted } from 'vue'
+import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import HomeLogoutItem from '@/presentation/components/HomeLogoutItem.vue'
+import LoginedHeader from '@/presentation/components/LoginedHeader.vue'
+import HeaderBar from '../components/HeaderBar.vue'
 
 const authStore = useAuthStore()
 const router = useRouter()
@@ -36,7 +36,8 @@ onMounted(() => {
 
 <template>
   <h2>Home</h2>
-  <HomeLogoutItem />
+
+  <LoginedHeader />
 
   <div>
     <v-btn is-rental="true" @click="toRent">Rent</v-btn>
