@@ -5,15 +5,46 @@
     </template>
     <v-app-bar-title>Book-store system</v-app-bar-title>
   </v-app-bar>
+
   <v-navigation-drawer v-model="drawer" temporary>
     <v-list-item title="Book Store System" subtitle="Operation room"></v-list-item>
     <v-divider></v-divider>
-    <v-list :items="items"></v-list>
+    <v-list v-if="authStore.userId">
+      <v-list-item title="Home" :to="{ name: 'home' }"></v-list-item>
+      <v-list-item
+        title="rent"
+        :to="{ name: 'rent', params: { rentOrReturn: 'rent' } }"
+      ></v-list-item>
+      <v-list-item
+        title="return"
+        :to="{ name: 'rent', params: { rentOrReturn: 'return' } }"
+      ></v-list-item>
+      <v-list-item title="View Rentals" :to="{ name: 'rentals' }"></v-list-item>
+      <v-list-item title="Edit BookList" :to="{ name: 'books' }"></v-list-item>
+      <v-list-item
+        title="Logout"
+        :to="{ name: 'top' }"
+        @click="authStore.userId = ''"
+      ></v-list-item>
+    </v-list>
+    <v-list v-if="!authStore.userId">
+      <v-list-item title="Top" :to="{ name: 'top' }"></v-list-item>
+      <v-list-item title="Login" :to="{ name: 'login' }"></v-list-item>
+      <v-list-item title="Register" :to="{ name: 'userRegister' }"></v-list-item>
+    </v-list>
   </v-navigation-drawer>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { useAuthStore } from '@/repository/store/auth'
+import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
+const authStore = useAuthStore()
 const drawer = ref(false)
+
+onMounted(() => {
+  console.log(authStore.userId)
+  console.log(authStore.isLogin)
+})
 </script>
