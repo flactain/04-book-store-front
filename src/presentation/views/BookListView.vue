@@ -1,5 +1,4 @@
 <script setup>
-import LoginedHeader from '@/presentation/components/LoginedHeader.vue'
 import axios from 'axios'
 import { ref, computed, onMounted } from 'vue'
 import { createBook } from '@/models/model/book'
@@ -64,7 +63,6 @@ onMounted(() => {
 <template>
   <v-container>
     <HeaderText>Register Book</HeaderText>
-    <LoginedHeader />
     <v-row>
       <v-col col="5">
         <v-text-field v-model="inputBook.isbn" type="text" label="ISBN" @change="getBookDetail" />

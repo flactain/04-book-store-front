@@ -6,6 +6,7 @@
     <v-app-bar-title>Book-store system</v-app-bar-title>
   </v-app-bar>
 
+  <!-- nav barの項目こちら -->
   <v-navigation-drawer v-model="drawer" temporary>
     <v-list-item title="Book Store System" subtitle="Operation room"></v-list-item>
     <v-divider></v-divider>
@@ -37,14 +38,8 @@
 
 <script setup>
 import { useAuthStore } from '@/repository/store/auth'
-import { onMounted, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref } from 'vue'
 
 const authStore = useAuthStore()
 const drawer = ref(false)
-
-onMounted(() => {
-  console.log(authStore.userId)
-  console.log(authStore.isLogin)
-})
 </script>

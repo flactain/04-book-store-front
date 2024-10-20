@@ -1,5 +1,4 @@
 <script setup>
-import LoginedHeader from '@/presentation/components/LoginedHeader.vue'
 import { ref } from 'vue'
 import HeaderText from '../components/HeaderText.vue'
 //TODO:APIたたく実装必要
@@ -31,7 +30,6 @@ const books = ref([
 <template>
   <v-container>
     <HeaderText>View Rentals</HeaderText>
-    <LoginedHeader />
     <h3>rentals</h3>
     <div v-for="book in books" :key="book.rentNo">
       <p>rentNo:{{ book.rentNo }}</p>

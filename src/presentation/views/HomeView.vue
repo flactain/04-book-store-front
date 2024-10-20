@@ -2,7 +2,6 @@
 import { useAuthStore } from '@/repository/store/auth'
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import LoginedHeader from '@/presentation/components/LoginedHeader.vue'
 import HeaderText from '../components/HeaderText.vue'
 
 const authStore = useAuthStore()
@@ -37,7 +36,6 @@ onMounted(() => {
 <template>
   <v-container>
     <HeaderText>Home</HeaderText>
-    <LoginedHeader />
 
     <div>
       <v-btn is-rental="true" @click="toRent">Rent</v-btn>

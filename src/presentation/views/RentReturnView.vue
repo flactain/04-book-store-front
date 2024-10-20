@@ -1,6 +1,5 @@
 <script setup>
 import LibraryFormItem from '@/presentation/components/LibraryFormItem.vue'
-import LoginedHeader from '@/presentation/components/LoginedHeader.vue'
 import { useAuthStore } from '@/repository/store/auth'
 // eslint-disable-next-line no-unused-vars
 import { onMounted, onUnmounted } from 'vue'
@@ -34,6 +33,5 @@ onMounted(() => {
 
 <template>
   <HeaderText>Rental/Return</HeaderText>
-  <LoginedHeader />
   <LibraryFormItem @submit="submit"></LibraryFormItem>
 </template>
