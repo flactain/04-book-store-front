@@ -49,10 +49,15 @@ const captureImage = () => {
     const context = canvasRef.value.getContext('2d')
     context.drawImage(videoRef.value, 0, 0, width, height)
     isCapturedImage.value = true
-    capturedImage.value = canvasRef.value.toDataURL('image/png')
+    canvasRef.value.toBlob((blob) => {
+      capturedImage.value = blob
+    })
   }
 }
-
+axios.interceptors.request.use((request) => {
+  console.log('Starting Request: ', request)
+  return request
+})
 //infrastructureに移動
 const uploadImage = async () => {
   if (!capturedImage.value) {
@@ -64,19 +69,21 @@ const uploadImage = async () => {
 
   try {
     // multipart/form-data
-    const response = await fetch(capturedImage.value)
-    const blob = await response.blob()
-
     const formData = new FormData()
-    formData.append('image', blob, 'captured_image.png')
+    console.log(capturedImage.value)
+
+    formData.append('image', capturedImage.value, authStore.userId + '.png')
 
     //TODO: URL書き換え
-    const uploadResponse = await axios.post('https://your-backend-api-url/upload', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        'Access-Control-Allow-Origin': '*'
+    const uploadResponse = await axios.post(
+      'https://u6q1vqf2mj.execute-api.ap-northeast-1.amazonaws.com/prd/auth/register',
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
       }
-    })
+    )
 
     if (uploadResponse.status === 200) {
       uploadStatus.value = 'アップロード成功！'
